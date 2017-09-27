@@ -16,3 +16,5 @@ rm -f $DISTR_ZIP
 echo "upload server config"
 az storage blob upload -f $CONFIG_ZIP -c $STORAGE_CONTAINER -n $CONFIG_ZIP
 rm -f $CONFIG_ZIP
+#server configuration
+. server_configuration.sh
