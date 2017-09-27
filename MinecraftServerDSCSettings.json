@@ -1,0 +1,11 @@
+{
+    "ModulesURL":"$CONFIG_URL", 
+    "configurationFunction": "$CONFIG_FILE\\$CONFIG_NAME", 
+    "Properties": 
+    {
+        "accountName": "$STORAGE_ACCOUNT", 
+        "containerName":"$STORAGE_CONTAINER", 
+        "minecraftVersion":"$MVERSION",
+        "vmName":"$SERVER_NAME"
+    } 
+}
