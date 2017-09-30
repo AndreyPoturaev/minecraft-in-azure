@@ -19,7 +19,7 @@ DISK_NAME=minedata
 az disk create -n $DISK_NAME --size-gb 10 --sku Standard_LRS
 #asd MicrosoftWindowsServer:WindowsServer:2016-Nano-Server:2016.0.20170816 MicrosoftWindowsServer:WindowsServer:2016-Datacenter-Server-Core-smalldisk:2016.127.20170822
 echo "create server vm"
-az vm create -n $SERVER_NAME --size "Standard_D1_v2" --image "MicrosoftWindowsServer:WindowsServer:2016-Datacenter-Server-Core-smalldisk:latest" \
+az vm create -n $VM_NAME --size $VM_SIZE --image $VM_IMAGE \
                 --nics $NIC_NAME \
-                --admin-username minecraftadmin --admin-password minecraftbanka1511@N \
-                --os-disk-name ${SERVER_NAME}disk --attach-data-disk $DISK_NAME                
+                --admin-username $VM_ADMIN_LOGIN --admin-password $VM_ADMIN_PASSWORD \
+                --os-disk-name ${VM_NAME}disk --attach-data-disk $DISK_NAME                
