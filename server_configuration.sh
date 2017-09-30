@@ -6,7 +6,7 @@ az vm extension set \
    --name DSC \
    --publisher Microsoft.Powershell \
    --version 2.7 \
-   --vm-name $SERVER_NAME \
+   --vm-name $VM_NAME \
    --resource-group $GROUP \
    --settings ThisMinecraftServerDSCSettings.json
 rm -f ThisMinecraftServerDSCSettings.json

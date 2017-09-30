@@ -6,6 +6,6 @@
         "accountName": "$STORAGE_ACCOUNT", 
         "containerName":"$STORAGE_CONTAINER", 
         "minecraftVersion":"$MVERSION",
-        "vmName":"$SERVER_NAME"
+        "vmName":"$VM_NAME"
     } 
 }
