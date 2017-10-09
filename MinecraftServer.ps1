@@ -2,7 +2,7 @@
 {
 
     param (
-        [string] $minecraftVersion = "1.12",
+        [string] $minecraftVersion = "1.12.2",
         [string] $containerName = "server",
         [string] $accountName = "minedisk",
         [string] $vmName = ""
