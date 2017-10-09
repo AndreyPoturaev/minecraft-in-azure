@@ -1,4 +1,4 @@
-export GROUP=minecraft2
+export GROUP=minecraft
 export LOCATION=westeurope
 
 #place your unique storage account name here. 
