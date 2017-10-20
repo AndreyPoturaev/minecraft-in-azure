@@ -92,6 +92,45 @@
             eula=true"				
 			DependsOn = "[File]CheckProperties"
 		}
+		
+		File CheckLoggingSettings
+		{
+			DestinationPath = "$mineHome\log4j2.xml"
+			Type = "File"
+			Ensure = "Present"
+            Force = $true
+			DependsOn = "[File]CheckEULA"
+			Contents = "
+<?xml version='1.0' encoding='UTF-8'?>
+<Configuration status='WARN' packages='com.mojang.util'>
+    <Appenders>
+        <Console name='SysOut' target='SYSTEM_OUT'>
+            <PatternLayout pattern='[%d{HH:mm:ss}] [%t/%level]: %msg%n' />
+        </Console>
+        <Queue name='ServerGuiConsole'>
+            <PatternLayout pattern='[%d{HH:mm:ss} %level]: %msg%n' />
+        </Queue>
+        <RollingRandomAccessFile name='File' fileName='latest.log' filePattern='logs/%d{yyyy-MM-dd-HH}.log.gz'>
+            <PatternLayout pattern='%d{yyyy-MM-dd HH:mm:ss};%level;%msg%n' />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval='3600'/>
+            </Policies>
+			<DefaultRolloverStrategy max='5'/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level='info'>
+            <filters>
+                <MarkerFilter marker='NETWORK_PACKETS' onMatch='DENY' onMismatch='NEUTRAL' />
+            </filters>
+            <AppenderRef ref='SysOut'/>
+            <AppenderRef ref='File'/>
+            <AppenderRef ref='ServerGuiConsole'/>
+        </Root>
+    </Loggers>
+</Configuration>
+			"
+		}
 
         xWaitForDisk WaitWorldDisk
         {
@@ -99,7 +138,7 @@
             DiskId = "2"   
             RetryIntervalSec = 60	
             RetryCount = 5
-            DependsOn = "[File]CheckEULA"
+            DependsOn = "[File]CheckLoggingSettings"
         }
 
         xDisk PrepareWorldDisk
@@ -156,7 +195,7 @@
             }
             SetScript=
             {
-                Start-Process -FilePath "$using:mineHome\jre\bin\java" -WorkingDirectory "$using:mineHome" -ArgumentList "-Xms512M -Xmx512M  -jar `"$using:mineHome\minecraft_server.$using:minecraftVersion.jar`" nogui"                
+                Start-Process -FilePath "$using:mineHome\jre\bin\java" -WorkingDirectory "$using:mineHome" -ArgumentList "-Xms512M -Xmx512M -Dlog4j.configurationFile=`"$using:mineHome\log4j2.xml`"  -jar `"$using:mineHome\minecraft_server.$using:minecraftVersion.jar`" nogui"                
             }
             TestScript=
             {
