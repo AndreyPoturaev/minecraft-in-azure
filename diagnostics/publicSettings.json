@@ -1,0 +1,36 @@
+{
+    "WadCfg": {
+        "DiagnosticMonitorConfiguration": {
+            "overallQuotaInMB": 10000,
+            "sinks" : "eventhub",
+            "DiagnosticInfrastructureLogs": {
+                "scheduledTransferLogLevelFilter": "Error"
+            },
+            "Directories": {
+                "scheduledTransferPeriod": "PT1M",
+                "DataSources": [
+                    {
+                        "containerName": "logs",
+                        "Absolute": {
+                            "path": "C:\\minecraft\\mineserver\\logs",
+                            "expandEnvironment": false
+                        }
+                    }
+                ]
+            }
+        },
+        "SinksConfig": {
+            "Sink": [
+            {
+                "name" : "eventhub",
+                "EventHub" : {
+                    "Url" : "https://minesrv.servicebus.windows.net/logs",
+                    "SharedAccessKeyName" : "SendKey"
+                }
+            }
+        ]
+        }
+    },
+    "StorageAccount": "minedisk",
+    "StorageType": "Table"
+}

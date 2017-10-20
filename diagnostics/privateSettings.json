@@ -1,0 +1,11 @@
+{
+    "storageAccountName": "minedisk",
+    "storageAccountKey": "qazTFgqrOKS2pY/0Ch0rKV52qOSMGm62dwWtBncvF3YOnniEcEI4W8/+evo8mzJfVkAp6Le2ihj5dyuZNbMnSA==",
+    "EventHub" : 
+    {
+        "Url" : "https://minesrv.servicebus.windows.net/logs",
+        "SharedAccessKeyName" : "SendKey",
+        "SharedAccessKey" : "4vQxsSb20Hki7LHg0DbgRAuvFOSzlUOvN6Ba2S6+T+M="
+    } 
+    
+}

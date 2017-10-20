@@ -10,5 +10,3 @@ export AZURE_STORAGE_CONNECTION_STRING="$STORAGE_CS"
 
 echo "create storage container"
 az storage container create -n $STORAGE_CONTAINER --public-access blob
-
-
