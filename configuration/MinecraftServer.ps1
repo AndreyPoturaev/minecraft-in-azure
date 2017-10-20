@@ -111,9 +111,11 @@
             <PatternLayout pattern='[%d{HH:mm:ss} %level]: %msg%n' />
         </Queue>
         <RollingRandomAccessFile name='File' fileName='latest.log' filePattern='logs/%d{yyyy-MM-dd-HH}.log.gz'>
-            <PatternLayout pattern='%d{yyyy-MM-dd HH:mm:ss};%level;%msg%n' />
+            <PatternLayout pattern='%d{yyyy-MM-dd HH:mm:ss};%level;%msg%n'>
+				<header>TS;LEVEL;MESSAGE</header>
+			</PatternLayout>
             <Policies>
-                <TimeBasedTriggeringPolicy interval='3600'/>
+                <TimeBasedTriggeringPolicy interval='1'/>
             </Policies>
 			<DefaultRolloverStrategy max='5'/>
         </RollingRandomAccessFile>
