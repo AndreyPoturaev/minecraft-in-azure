@@ -10,7 +10,7 @@ New-AzureRmAutomationModule -AutomationAccountName $env:AUTOMATION -ResourceGrou
 Start-Sleep -Seconds 60
 
 Write-Output "upload minecraft server powershell DSC configuration"
-Import-AzureRmAutomationDscConfiguration -AutomationAccountName $env:AUTOMATION -ResourceGroupName $env:GROUP -SourcePath "$env:CONFIG_NAME.ps1" -Force -Published
+Import-AzureRmAutomationDscConfiguration -AutomationAccountName $env:AUTOMATION -ResourceGroupName $env:GROUP -SourcePath "configuration/$env:CONFIG_NAME.ps1" -Force -Published
 
 Write-Output "compile DSC configuration"
 $Params = @{"minecraftVersion"="$env:MVERSION";"accountName"="$env:STORAGE_ACCOUNT";"containerName"="$env:STORAGE_CONTAINER";"vmName"="$env:VM_NAME"}
@@ -22,6 +22,7 @@ while($CompilationJob.EndTime -eq $null -and $CompilationJob.Exception -eq $null
     Start-Sleep -Seconds 3
 }
 
+Write-Output "configure vm"
 Register-AzureRmAutomationDscNode -AzureVMName $env:VM_NAME `
                                     -AzureVMResourceGroup $env:GROUP `
                                     -AzureVMLocation $env:LOCATION `

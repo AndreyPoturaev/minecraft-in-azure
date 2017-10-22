@@ -2,7 +2,6 @@
     "WadCfg": {
         "DiagnosticMonitorConfiguration": {
             "overallQuotaInMB": 10000,
-            "sinks" : "eventhub",
             "DiagnosticInfrastructureLogs": {
                 "scheduledTransferLogLevelFilter": "Error"
             },
@@ -18,19 +17,8 @@
                     }
                 ]
             }
-        },
-        "SinksConfig": {
-            "Sink": [
-            {
-                "name" : "eventhub",
-                "EventHub" : {
-                    "Url" : "https://minesrv.servicebus.windows.net/logs",
-                    "SharedAccessKeyName" : "SendKey"
-                }
-            }
-        ]
         }
     },
-    "StorageAccount": "minedisk",
+    "StorageAccount": "$AZURE_STORAGE_ACCOUNT",
     "StorageType": "Table"
 }

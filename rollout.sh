@@ -11,4 +11,6 @@ rm -f $DISTR_ZIP
 #infrastructure rollout
 . iaas_preparation.sh
 #server configuration
-powershell -File automation_preparation.ps1
+powershell -File configuration/automation_preparation.ps1
+#logging configuration
+. diagnostics/logging_preparation.sh

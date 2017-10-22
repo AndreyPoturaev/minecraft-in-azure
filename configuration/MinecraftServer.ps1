@@ -75,7 +75,7 @@
 				max-tick-time=60000
 				spawn-monsters=true
 				generate-structures=true
-				view-distance=10
+				view-distance=50
 				motd=Dima Minecraft Server"				
 			DependsOn = "[Archive]UnzipServer"
 		}
@@ -100,8 +100,7 @@
 			Ensure = "Present"
             Force = $true
 			DependsOn = "[File]CheckEULA"
-			Contents = "
-<?xml version='1.0' encoding='UTF-8'?>
+			Contents = "<?xml version='1.0' encoding='UTF-8'?>
 <Configuration status='WARN' packages='com.mojang.util'>
     <Appenders>
         <Console name='SysOut' target='SYSTEM_OUT'>
@@ -110,14 +109,15 @@
         <Queue name='ServerGuiConsole'>
             <PatternLayout pattern='[%d{HH:mm:ss} %level]: %msg%n' />
         </Queue>
-        <RollingRandomAccessFile name='File' fileName='latest.log' filePattern='logs/%d{yyyy-MM-dd-HH}.log.gz'>
+        <RollingRandomAccessFile name='File' fileName=`"$mineHome\latest.log`" filePattern=`"$mineHome\logs\%d{yyyy-MM-dd}\%d{HH}\%d{HH-mm-ss}-%i.log.gz`">
             <PatternLayout pattern='%d{yyyy-MM-dd HH:mm:ss};%level;%msg%n'>
-				<header>TS;LEVEL;MESSAGE</header>
-			</PatternLayout>
+                <header>TS;LEVEL;MESSAGE%n</header>
+            </PatternLayout>
             <Policies>
-                <TimeBasedTriggeringPolicy interval='1'/>
+                <TimeBasedTriggeringPolicy interval='10'/>
+                <SizeBasedTriggeringPolicy size='10 MB'/>
             </Policies>
-			<DefaultRolloverStrategy max='5'/>
+            <DefaultRolloverStrategy max='100'/>
         </RollingRandomAccessFile>
     </Appenders>
     <Loggers>
@@ -130,8 +130,7 @@
             <AppenderRef ref='ServerGuiConsole'/>
         </Root>
     </Loggers>
-</Configuration>
-			"
+</Configuration>"
 		}
 
         xWaitForDisk WaitWorldDisk
