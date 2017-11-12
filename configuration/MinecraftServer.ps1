@@ -114,7 +114,7 @@
                 <header>TS;LEVEL;MESSAGE%n</header>
             </PatternLayout>
             <Policies>
-                <TimeBasedTriggeringPolicy interval='10'/>
+                <CronTriggeringPolicy schedule='0/30 * * * * ?' evaluateOnStartup='true'/>
                 <SizeBasedTriggeringPolicy size='10 MB'/>
             </Policies>
             <DefaultRolloverStrategy max='100'/>

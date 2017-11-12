@@ -7,15 +7,15 @@
         <Queue name='ServerGuiConsole'>
             <PatternLayout pattern='[%d{HH:mm:ss} %level]: %msg%n' />
         </Queue>
-        <RollingRandomAccessFile name='File' fileName='c:/azure/latest.log' filePattern='c:/azure/logs/%d{yyyy-MM-dd}/%d{HH}/%d{HH-mm-ss}-%i.log.gz'>
+        <RollingRandomAccessFile name='File' fileName=`"$mineHome\latest.log`" filePattern=`"$mineHome\logs\%d{yyyy-MM-dd}\%d{HH}\%d{HH-mm-ss}-%i.log.gz`">
             <PatternLayout pattern='%d{yyyy-MM-dd HH:mm:ss};%level;%msg%n'>
                 <header>TS;LEVEL;MESSAGE%n</header>
             </PatternLayout>
             <Policies>
-                <TimeBasedTriggeringPolicy interval='10'/>
+                <CronTriggeringPolicy schedule='10 * * * * ?' evaluateOnStartup='true'/>
                 <SizeBasedTriggeringPolicy size='10 MB'/>
             </Policies>
-			<DefaultRolloverStrategy max='100'/>
+            <DefaultRolloverStrategy max='100'/>
         </RollingRandomAccessFile>
     </Appenders>
     <Loggers>

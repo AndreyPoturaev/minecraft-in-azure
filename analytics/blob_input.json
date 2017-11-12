@@ -1,0 +1,28 @@
+{
+    "properties": {
+      "type": "Stream",
+      "datasource": {
+        "type": "Microsoft.Storage/Blob",
+        "properties": {
+          "storageAccounts": [
+            {
+              "accountName": "minedisk",
+              "accountKey": "J7JYKMyo8nTYaIMkP22ooyBOkQT6hriuQgSx1Mr5bExLtU4Eye/M94oYB0MQgELjTLQtOgt0S5NC0KlLquGjWA=="
+            }
+          ],
+          "container": "logs",
+          "pathPattern": "WAD/be7f1c92-2841-4ea1-b9d8-ec83c191b8ea/IaaS/_minesrv/{date}/{time}/",
+          "dateFormat": "yyyy-MM-dd",
+          "timeFormat": "HH",
+          "sourcePartitionCount": 1
+        }
+      },
+      "serialization": {
+        "type": "Csv",
+        "properties": {
+          "fieldDelimiter": ";",
+          "encoding": "UTF8"
+        }
+      }
+    }
+  }
